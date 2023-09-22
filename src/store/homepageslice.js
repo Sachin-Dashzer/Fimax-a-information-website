@@ -5,7 +5,7 @@ export const homepageslice = createSlice({
   initialState : {
     url : {},
     genre : {}
-  },
+  }, 
 
   
   reducers: {
