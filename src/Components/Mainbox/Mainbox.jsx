@@ -5,7 +5,7 @@ import "./mainbox.scss"
 
 const Mainbox = ({children}) => {
   return (
-    <div className='Mainbox'>
+    <div className='mainbox'>
         {children}
 
     </div>

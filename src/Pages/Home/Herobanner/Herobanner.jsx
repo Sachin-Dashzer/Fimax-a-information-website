@@ -4,6 +4,7 @@ import usedFetch from "../../../hook/usedFetch";
 import { useSelector } from "react-redux";
 import Img from "../../../Components/Lazyloading/Img";
 import Mainbox from "../../../Components/Mainbox/Mainbox";
+import "./herobanner.scss"
 
 const Herobanner = () => {
   const [background, setbackground] = useState(null);
@@ -26,7 +27,7 @@ const Herobanner = () => {
   }
 
   return (
-    <section id="herobanner">
+    <div className="herobanner">
       {!loading && (
         <div className="herobanner-img">
           <Img src={background} />
@@ -37,7 +38,7 @@ const Herobanner = () => {
       <div className="opacity-layer"></div>
 
       <Mainbox>
-        <div className="heorbanner-content">
+        <div className="herobanner-content">
           <span className="title">Welcome.</span>
           <span className="subtitle">
             Millions of movies, TV shows and people to discover. Explore now.
@@ -50,11 +51,13 @@ const Herobanner = () => {
               onChange={(e) => setquery(e.target.value)}
               onKeyUp={setqueryhandeler}
             />
-            <button>Search</button>
+            <button onClick={() => navigate(`/search/${query}`)}>
+              Search
+            </button>
           </div>
         </div>
       </Mainbox>
-    </section>
+    </div>
   );
 };
 
