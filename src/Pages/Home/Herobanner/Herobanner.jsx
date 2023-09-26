@@ -4,7 +4,7 @@ import usedFetch from "../../../hook/usedFetch";
 import { useSelector } from "react-redux";
 import Img from "../../../Components/Lazyloading/Img";
 import Mainbox from "../../../Components/Mainbox/Mainbox";
-import "./herobanner.scss"
+import "./herobanner.scss";
 
 const Herobanner = () => {
   const [background, setbackground] = useState(null);
@@ -14,11 +14,14 @@ const Herobanner = () => {
   const { url } = useSelector((state) => state.homepage);
 
   useEffect(() => {
-    const bg =
-      url.backdrop +
-      data?.results?.[Math.floor(Math.random() * 20)]?.backdrop_path;
-    setbackground(bg);
+      const bg =
+        url.backdrop +
+        data?.results?.[Math.floor(Math.random() * 20)]?.backdrop_path;
+      setbackground(bg);
+
+
   }, [data]);
+
 
   function setqueryhandeler(event) {
     if (event.key === "Enter" && query.length > 0) {
@@ -33,7 +36,6 @@ const Herobanner = () => {
           <Img src={background} />
         </div>
       )}
-
 
       <div className="opacity-layer"></div>
 
@@ -51,9 +53,7 @@ const Herobanner = () => {
               onChange={(e) => setquery(e.target.value)}
               onKeyUp={setqueryhandeler}
             />
-            <button onClick={() => navigate(`/search/${query}`)}>
-              Search
-            </button>
+            <button onClick={() => navigate(`/search/${query}`)}>Search</button>
           </div>
         </div>
       </Mainbox>
