@@ -10,12 +10,30 @@ import dayjs from "dayjs";
 import Img from "../Lazyloading/Img";
 import PosterFallback from "../../assets/no-poster.png";
 import Ratingcircle from "../Ratingcircle/Ratingcircle";
+import Genras from "../Genres/Genres";
 import Mainbox from "../Mainbox/Mainbox";
 
 import "./movietypeboxes.scss";
 
-const Movietypeboxes = ({ data, loading }) => {
+const Movietypeboxes = ({ data, loading , pagetype }) => {
+  const navigate = useNavigate();
+  const movingcontainer = useRef(null);
   const { url } = useSelector((state) => state.homepage);
+
+  const navigation = (dir) => {
+    const container = movingcontainer.current;
+
+    const scrollAmount =
+        dir === "left"
+            ? container.scrollLeft - (container.offsetWidth + 20)
+            : container.scrollLeft + (container.offsetWidth + 20);
+
+    container.scrollTo({
+        left: scrollAmount,
+        behavior: "smooth",
+    });
+};
+
 
   const skItem = () => {
     return (
@@ -32,18 +50,27 @@ const Movietypeboxes = ({ data, loading }) => {
   return (
     <div className="movietypebox">
       <Mainbox>
-        <BsFillArrowLeftCircleFill className="arrow arrow-left" />
-        <BsFillArrowRightCircleFill className="arrow arrow-right" />
+        <BsFillArrowLeftCircleFill className="arrow arrow-left" onClick={() => navigation("left")} />
+        <BsFillArrowRightCircleFill className="arrow arrow-right" onClick={() => navigation("right")} />
 
         {!loading ? (
-          <div className="movie-section">
+          <div className="movie-section" ref = {movingcontainer}>
             {data?.map((item, index) => {
               const posterUrl = item.poster_path
                 ? url.poster + item.poster_path
                 : PosterFallback;
 
               return (
-                <div className="movie-box" key={item.id}>
+                <div className="movie-box" key={item.id}
+                onClick={() =>
+                  navigate(
+                      `/${item.media_type || endpoint}/${
+                          item.id
+                      }`
+                  )
+              }
+
+                >
                   <div className="moviebox-img">
                     <Img
                       src={posterUrl}
@@ -54,6 +81,9 @@ const Movietypeboxes = ({ data, loading }) => {
 
                     <div className="rating">
                       <Ratingcircle rating={item.vote_average.toFixed(1)} />
+                    </div>
+                    <div className="genres">
+                      <Genras data={item.genre_ids.slice(0, 2)} />
                     </div>
                   </div>
                   <div className="moviebox-text">

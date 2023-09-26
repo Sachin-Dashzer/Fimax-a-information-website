@@ -21,7 +21,7 @@
       &:hover {
         opacity: 0.8;
       }
-      @include md{
+      @include md {
         display: none;
       }
     }
@@ -45,14 +45,12 @@
         margin-right: -20px;
         margin-left: -20px;
         padding: 0 20px;
-  
       }
       .skeletonItem {
         width: calc(25% - 15px);
-        
+
         @include md {
           width: 125px;
-          
         }
         flex-shrink: 0;
         .posterBlock {
@@ -136,6 +134,17 @@
             @include md {
               width: 40px;
               height: 40px;
+            }
+          }
+          .genres {
+            display: flex;
+            flex-flow: wrap;
+            justify-content: flex-end;
+
+            position: relative;
+            @include md {
+              display: none;
+
             }
           }
         }

@@ -2,7 +2,7 @@ import "./App.css";
 import { useState, useEffect } from "react";
 import { fetchDataFromApi } from "./utils/api";
 import { useSelector, useDispatch } from "react-redux";
-import { getApiConfiguration } from "./store/homepageslice";
+import { getApiConfiguration, getGenre } from "./store/homepageslice";
 
 import { Routes, Route, BrowserRouter as Router } from "react-router-dom";
 
@@ -13,6 +13,7 @@ import Details from "./Pages/Details/Details";
 import Searchresult from "./Pages/Searchresult/Searchresult";
 import Explore from "./Pages/Explore/Explore";
 import Pagenotfound from "./Pages/Eror404/Pagenotfound";
+import { all } from "axios";
 
 function App() {
   const dispatch = useDispatch();
@@ -20,6 +21,7 @@ function App() {
 
   useEffect(() => {
     apitest();
+    genrecalls();
   }, []);
 
   const apitest = () => {
@@ -34,6 +36,26 @@ function App() {
 
       dispatch(getApiConfiguration(url));
     });
+  };
+
+  const genrecalls = async () => {
+    let promises = [];
+    let endpoint = ["tv", "movie"];
+    let allgenre = {};
+
+    endpoint.forEach((item) => {
+      promises.push(fetchDataFromApi(`/genre/${item}/list`));
+    });
+
+    const data = await Promise.all(promises);
+
+    // console.log(data);
+
+    data.map(({ genres }) => {
+      return genres.map((items) => (allgenre[items.id] = items.name));
+    });
+
+    dispatch(getGenre(allgenre));
   };
 
   return (

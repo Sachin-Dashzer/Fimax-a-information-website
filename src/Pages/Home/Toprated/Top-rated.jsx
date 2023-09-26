@@ -8,15 +8,15 @@ import Movietypeboxes from '../../../Components/Movietypeboxes/Movietypeboxes'
 import usedFetch from '../../../hook/usedFetch'
 
 
-const Trending = () => {
+const Toprated = () => {
 
-    const [pagetype , setpagetype] = useState("day")
-    const {data , loading} = usedFetch(`/trending/movie/${pagetype}`)
+    const [pagetype , setpagetype] = useState("movie")
+    const {data , loading} = usedFetch(`/${pagetype}/top_rated`)
 
 
     const onbtnchange = (item) => {  
 
-        setpagetype(item === "Day" ? "day" : "week");
+        setpagetype(item === "Movie" ? "movie" : "tv");
 
     };
 
@@ -26,13 +26,17 @@ const Trending = () => {
 
         <Mainbox>
                 
-                <h1>Top-Trending</h1>
-                <Switchbtn data={["Day" , "Week"]} onbtnchange ={onbtnchange} />
+                <h1>Top-rated Movies/TV Series</h1>
+                <Switchbtn data={["Movie" , "Tv"]} onbtnchange ={onbtnchange} />
                 
 
 
         </Mainbox>
-            <Movietypeboxes data={data?.results} loading={loading} />
+            <Movietypeboxes data={data?.results} loading={loading}
+
+                pagetype={pagetype}
+            
+            />
 
 
 
@@ -42,4 +46,4 @@ const Trending = () => {
   )
 }
 
-export default Trending
+export default Toprated
