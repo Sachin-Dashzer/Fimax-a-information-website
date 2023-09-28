@@ -15,7 +15,7 @@ import Mainbox from "../Mainbox/Mainbox";
 
 import "./movietypeboxes.scss";
 
-const Movietypeboxes = ({ data, loading , pagetype }) => {
+const Movietypeboxes = ({ data, loading, pagetype }) => {
   const navigate = useNavigate();
   const movingcontainer = useRef(null);
   const { url } = useSelector((state) => state.homepage);
@@ -24,15 +24,15 @@ const Movietypeboxes = ({ data, loading , pagetype }) => {
     const container = movingcontainer.current;
 
     const scrollAmount =
-        dir === "left"
-            ? container.scrollLeft - (container.offsetWidth + 20)
-            : container.scrollLeft + (container.offsetWidth + 20);
+      dir === "left"
+        ? container.scrollLeft - (container.offsetWidth + 20)
+        : container.scrollLeft + (container.offsetWidth + 20);
 
     container.scrollTo({
-        left: scrollAmount,
-        behavior: "smooth",
+      left: scrollAmount,
+      behavior: "smooth",
     });
-};
+  };
 
 
   const skItem = () => {
@@ -50,26 +50,29 @@ const Movietypeboxes = ({ data, loading , pagetype }) => {
   return (
     <div className="movietypebox">
       <Mainbox>
-        <BsFillArrowLeftCircleFill className="arrow arrow-left" onClick={() => navigation("left")} />
-        <BsFillArrowRightCircleFill className="arrow arrow-right" onClick={() => navigation("right")} />
+        <BsFillArrowLeftCircleFill
+          className="arrow arrow-left"
+          onClick={() => navigation("left")}
+        />
+        <BsFillArrowRightCircleFill
+          className="arrow arrow-right"
+          onClick={() => navigation("right")}
+        />
 
         {!loading ? (
-          <div className="movie-section" ref = {movingcontainer}>
+          <div className="movie-section" ref={movingcontainer}>
             {data?.map((item, index) => {
               const posterUrl = item.poster_path
                 ? url.poster + item.poster_path
                 : PosterFallback;
 
               return (
-                <div className="movie-box" key={item.id}
-                onClick={() =>
-                  navigate(
-                      `/${item.media_type || endpoint}/${
-                          item.id
-                      }`
-                  )
-              }
-
+                <div
+                  className="movie-box"
+                  key={item.id}
+                  onClick={() =>
+                    navigate(`/${item.media_type || pagetype}/${item.id}`)
+                  }
                 >
                   <div className="moviebox-img">
                     <Img
