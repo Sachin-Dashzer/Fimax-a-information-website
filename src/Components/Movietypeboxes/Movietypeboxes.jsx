@@ -15,7 +15,7 @@ import Mainbox from "../Mainbox/Mainbox";
 
 import "./movietypeboxes.scss";
 
-const Movietypeboxes = ({ data, loading, pagetype }) => {
+const Movietypeboxes = ({ data, loading, pagetype , title }) => {
   const navigate = useNavigate();
   const movingcontainer = useRef(null);
   const { url } = useSelector((state) => state.homepage);
@@ -50,6 +50,8 @@ const Movietypeboxes = ({ data, loading, pagetype }) => {
   return (
     <div className="movietypebox">
       <Mainbox>
+      {title && <div className="carouselTitle">{title}</div>}
+
         <BsFillArrowLeftCircleFill
           className="arrow arrow-left"
           onClick={() => navigation("left")}

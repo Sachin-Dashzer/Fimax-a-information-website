@@ -1,80 +1,185 @@
+import React, { useState } from "react";
+import usedFetch from "../../../hook/usedFetch";
+import { useParams } from "react-router-dom";
+import { useSelector } from "react-redux";
+import dayjs from "dayjs";
 
+import "./detailbanner.scss";
 
-import React, { useState } from 'react'
-import usedFetch from "../../../hook/usedFetch"
-import { useParams } from "react-router-dom"
-import { useSelector } from 'react-redux'
-import dayjs from 'dayjs'
+import Mainbox from "../../../Components/Mainbox/Mainbox";
+import Img from "../../../Components/Lazyloading/Img";
+import Ratingcircle from "../../../Components/Ratingcircle/Ratingcircle";
+import PosterFallback from "../../../assets/no-poster.png";
+import Genres from "../../../Components/Genres/Genres";
+import { PlayIcon } from "../Playbt.jsx";
+import VideoPopup from "../../../Components/Playvideo/Playvideo";
 
-import "./detailbanner.scss"
+const Detailbanner = ({ video, crew }) => {
+  const [show, setShow] = useState(false);
+  const [videoId, setVideoId] = useState(null);
 
-import Mainbox from "../../../Components/Mainbox/Mainbox"
-import Img from "../../../Components/Lazyloading/Img"
-import Movietypeboxes from "../../../Components/Movietypeboxes/Movietypeboxes"
-import Ratingcircle from "../../../Components/Ratingcircle/Ratingcircle"
-import PosterFallback from "../../../assets/no-poster.png"
-import Genres from "../../../Components/Genres/Genres"
+  const { mediaType, id } = useParams();
+  const { data, loading } = usedFetch(`/${mediaType}/${id}`);
+  const { url } = useSelector((state) => state.homepage);
 
+  // console.log(data);
 
+  const _genres = data?.genres?.map((g) => g.id);
 
+  const director = crew?.filter((f) => f.job === "Director");
+  const writer = crew?.filter(
+    (f) => f.job === "Screenplay" || f.job === "Story" || f.job === "Writer"
+  );
 
-
-const Detailbanner = () => {
-
-    const { mediaType, id } = useParams();
-    const { data, loading } = usedFetch(`/${mediaType}/${id}`);
-
-    console.log(data);
-
-
-    const { url } = useSelector((state) => state.homepage);
-
+  const toHoursAndMinutes = (totalMinutes) => {
+    const hours = Math.floor(totalMinutes / 60);
+    const minutes = totalMinutes % 60;
+    return `${hours}h${minutes > 0 ? ` ${minutes}m` : ""}`;
+  };
 
   return (
-
     <div className="detailbanner">
+      {!loading ? (
+        <>
+          {!!data && (
+            <React.Fragment>
+              <div className="backgroundimg">
+                <Img src={url.backdrop + data?.backdrop_path} />
+              </div>
+              <div className="opacity-layer"></div>
 
-        {
-            !loading ?
+              <Mainbox>
+                <div className="container">
+                  <div className="left">
+                    {data.poster_path ? (
+                      <Img src={url.poster + data?.poster_path} />
+                    ) : (
+                      <Img src={PosterFallback} />
+                    )}
+                  </div>
+                  <div className="right">
+                    <div className="heading">
+                      {`${data.name || data.title} (${dayjs(
+                        data?.release_date
+                      ).format("YYYY")})`}
+                    </div>
+                    <div className="subtitle">{data.tagline}</div>
 
-            (
+                    <Genres data={_genres} />
+                    <div className="row">
+                      <Ratingcircle rating={data.vote_average.toFixed(1)} />
+                      <div
+                        className="playbtn"
+                        onClick={() => {
+                          setShow(true);
+                          setVideoId(video.key);
+                        }}
+                      >
+                        <PlayIcon />
+                        <span className="text">Watch Trailer</span>
+                      </div>
+                    </div>
 
-                <>
-                    !!data && (
+                    <div className="discription">
+                      <h1>Overview</h1>
+                      <p>{data.overview}</p>
+                    </div>
 
-                        <div className="backgroundimg">
-                            <Img
-                                src = {url.backdrop + data?.backdrop_path}
-                            />
+                    <div className="details">
+                      {data.status && (
+                        <div className="infoItem">
+                          <span className="text bold">Status: </span>
+                          <span className="text">{data.status}</span>
                         </div>
-
-                    )
-                </>
-            ) :(              
-                  <div className="detailsBannerSkeleton">
-                    <Mainbox>
-                        <div className="left skeleton"></div>
-                        <div className="right">
-                            <div className="row skeleton"></div>
-                            <div className="row skeleton"></div>
-                            <div className="row skeleton"></div>
-                            <div className="row skeleton"></div>
-                            <div className="row skeleton"></div>
-                            <div className="row skeleton"></div>
-                            <div className="row skeleton"></div>
+                      )}
+                      {data.release_date && (
+                        <div className="infoItem">
+                          <span className="text bold">Release Date: </span>
+                          <span className="text">
+                            {dayjs(data.release_date).format("MMM D, YYYY")}
+                          </span>
                         </div>
-                    </Mainbox>
+                      )}
+                      {data.runtime && (
+                        <div className="infoItem">
+                          <span className="text bold">Runtime: </span>
+                          <span className="text">
+                            {toHoursAndMinutes(data.runtime)}
+                          </span>
+                        </div>
+                      )}
+                    </div>
+                    {director?.length > 0 && (
+                      <div className="details">
+                        <span className="text bold">Director: </span>
+                        <span className="text">
+                          {director?.map((d, i) => (
+                            <span key={i}>
+                              {d.name}
+                              {director.length - 1 !== i && ", "}
+                            </span>
+                          ))}
+                        </span>
+                      </div>
+                    )}
+
+                    {writer?.length > 0 && (
+                      <div className="details">
+                        <span className="text bold">Writer: </span>
+                        <span className="text">
+                          {writer?.map((d, i) => (
+                            <span key={i}>
+                              {d.name}
+                              {writer.length - 1 !== i && ", "}
+                            </span>
+                          ))}
+                        </span>
+                      </div>
+                    )}
+
+                    {data?.created_by?.length > 0 && (
+                      <div className="details">
+                        <span className="text bold">Creator: </span>
+                        <span className="text">
+                          {data?.created_by?.map((d, i) => (
+                            <span key={i}>
+                              {d.name}
+                              {data?.created_by.length - 1 !== i && ", "}
+                            </span>
+                          ))}
+                        </span>
+                      </div>
+                    )}
+                  </div>
                 </div>
-)
-        }
-
-
-
+                <VideoPopup
+                  show={show}
+                  setShow={setShow}
+                  videoId={videoId}
+                  setVideoId={setVideoId}
+                />
+              </Mainbox>
+            </React.Fragment>
+          )}
+        </>
+      ) : (
+        <div className="detailsBannerSkeleton">
+          <Mainbox>
+            <div className="left skeleton"></div>
+            <div className="right">
+              <div className="row skeleton"></div>
+              <div className="row skeleton"></div>
+              <div className="row skeleton"></div>
+              <div className="row skeleton"></div>
+              <div className="row skeleton"></div>
+              <div className="row skeleton"></div>
+              <div className="row skeleton"></div>
+            </div>
+          </Mainbox>
+        </div>
+      )}
     </div>
+  );
+};
 
-
-
-  )
-}
-
-export default Detailbanner
+export default Detailbanner;

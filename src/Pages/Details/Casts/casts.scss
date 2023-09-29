@@ -1,0 +1,110 @@
+
+@import '../../../responsive.scss';
+
+
+.casts{
+
+    position: relative;
+    margin: 40px 0;
+    margin-bottom: 25px;
+
+    .title{
+        font-size: 27px;
+        color: snow;
+        margin-bottom: 30px;
+        
+    }
+
+    .castdata {
+        display: flex;
+        gap: 30px;
+        overflow-y: hidden;
+        @include md {
+            margin-right: -20px;
+            margin-left: -20px;
+            padding: 0 20px;
+        }
+        .castdetails {
+            text-align: center;
+            color: white;
+            .image {
+                border-radius: 50%;
+                overflow: hidden;
+                width: 160px;
+                height: 160px;
+                margin-bottom: 25px;
+                border: 4px solid var(--black-light);
+                @include md {
+                    width: 125px;
+                    height: 125px;
+                    margin-bottom: 15px;
+                }
+                img {
+                    width: 100%;
+                    height: 100%;
+                    object-fit: cover;
+                    object-position: center top;
+                    display: block;
+                }
+            }
+            .actorname {
+                font-weight: 600;
+                font-size: 18px;
+                line-height: 24px;
+                @include md {
+                    font-size: 14px;
+                    line-height: 20px;
+                }
+            }
+            .charactername {
+                opacity: 0.5;
+                font-size: 16px;
+                line-height: 24px;
+                @include md {
+                    font-size: 14px;
+                    line-height: 20px;
+                }
+            }
+        }
+    }
+
+
+    .castSkeleton {
+        display: flex;
+        gap: 20px;
+        overflow-y: hidden;
+        margin-right: -20px;
+        margin-left: -20px;
+        padding: 0 20px;
+        @include md {
+            margin: 0;
+            padding: 0;
+        }
+        .skItem {
+            .circle {
+                width: 125px;
+                height: 125px;
+                border-radius: 50%;
+                margin-bottom: 15px;
+                @include md {
+                    width: 175px;
+                    height: 175px;
+                    margin-bottom: 25px;
+                }
+            }
+            .row {
+                width: 100%;
+                height: 20px;
+                border-radius: 10px;
+                margin-bottom: 10px;
+            }
+            .row2 {
+                width: 75%;
+                height: 20px;
+                border-radius: 10px;
+                margin: 0 auto;
+            }
+        }
+    }
+
+}
