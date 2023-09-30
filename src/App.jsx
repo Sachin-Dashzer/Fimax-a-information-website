@@ -26,7 +26,6 @@ function App() {
 
   const apitest = () => {
     fetchDataFromApi("/configuration").then((res) => {
-      // console.log(res);
 
       const url = {
         backdrop: res.images.secure_base_url + "original",
@@ -71,7 +70,7 @@ function App() {
           <Route path="*" element={<Pagenotfound />} />
         </Routes>
 
-        {/* <Footer /> */}
+        <Footer />
       </Router>
     </>
   );
