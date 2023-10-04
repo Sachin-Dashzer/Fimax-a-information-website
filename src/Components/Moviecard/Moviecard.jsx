@@ -10,7 +10,7 @@ import './moviecard.scss'
 
 
 
-const Moviecard = ({ data, Search }) => {
+const Moviecard = ({ data, Search ,  mediaType }) => {
   const { url } = useSelector((store) => store.homepage);
   const navigate = useNavigate();
 
@@ -28,7 +28,7 @@ const Moviecard = ({ data, Search }) => {
 
         {!Search && (
           <React.Fragment>
-            <CircleRating rating={data.vote_average.toFixed(1)} />
+            <RatingCircle rating={data.vote_average.toFixed(1)} />
             <Genres data={data.genre_ids.slice(0, 2)} />
           </React.Fragment>
         )}
