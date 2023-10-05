@@ -1,10 +1,11 @@
-import "./App.css";
-import { useState, useEffect } from "react";
+import { useEffect } from "react";
 import { fetchDataFromApi } from "./utils/api";
-import { useSelector, useDispatch } from "react-redux";
+import { useDispatch } from "react-redux";
+
 import { getApiConfiguration, getGenre } from "./store/homepageslice";
 
 import { Routes, Route, BrowserRouter as Router } from "react-router-dom";
+
 
 import Header from "./Components/Header/Header";
 import Footer from "./Components/Footer/Footer";
@@ -13,16 +14,11 @@ import Details from "./Pages/Details/Details";
 import Searchresult from "./Pages/Searchresult/Searchresult";
 import Explore from "./Pages/Explore/Explore";
 import Pagenotfound from "./Pages/Eror404/Pagenotfound";
-import { all } from "axios";
+
 
 function App() {
-  const dispatch = useDispatch();
-  const { url } = useSelector((state) => state.homepage);
 
-  useEffect(() => {
-    apitest();
-    genrecalls();
-  }, []);
+  const dispatch = useDispatch();
 
   const apitest = () => {
     fetchDataFromApi("/configuration").then((res) => {
@@ -32,7 +28,6 @@ function App() {
         poster: res.images.secure_base_url + "original",
         profile: res.images.secure_base_url + "original",
       };
-
       dispatch(getApiConfiguration(url));
     });
   };
@@ -47,15 +42,21 @@ function App() {
     });
 
     const data = await Promise.all(promises);
-
-    // console.log(data);
-
     data.map(({ genres }) => {
+      
       return genres.map((items) => (allgenre[items.id] = items.name));
     });
 
     dispatch(getGenre(allgenre));
   };
+
+
+  useEffect(() => {
+    apitest();
+    genrecalls();
+  }, []);
+
+
 
   return (
     <>

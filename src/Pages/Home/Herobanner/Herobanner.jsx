@@ -1,62 +1,49 @@
 import React, { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
+// import { useNavigate } from "react-router-dom";
 import usedFetch from "../../../hook/usedFetch";
 import { useSelector } from "react-redux";
 import Img from "../../../Components/Lazyloading/Img";
-import Mainbox from "../../../Components/Mainbox/Mainbox";
-import "./herobanner.scss";
+import Bannerbox from "./Bannerbox";
 
 const Herobanner = () => {
-  const [background, setbackground] = useState(null);
-  const [query, setquery] = useState("");
-  const navigate = useNavigate();
   const { data, loading } = usedFetch("/movie/upcoming");
   const { url } = useSelector((state) => state.homepage);
+  
 
-  useEffect(() => {
-      const bg =
-        url.backdrop +
-        data?.results?.[Math.floor(Math.random() * 20)]?.backdrop_path;
-      setbackground(bg);
+  const Imgbox = [
+    <div className="herobanner-img">
+      <Img src={url.backdrop + data?.results?.[0].backdrop_path} />
+    </div>,
 
+    <div className="herobanner-img">
+      <Img src={url.backdrop + data?.results?.[1].backdrop_path} />
+    </div>,
 
-  }, [data]);
+    <div className="herobanner-img">
+      <Img src={url.backdrop + data?.results?.[2].backdrop_path} />
+    </div>,
 
+    <div className="herobanner-img">
+      <Img src={url.backdrop + data?.results?.[3].backdrop_path} />
+    </div>,
 
-  function setqueryhandeler(event) {
-    if (event.key === "Enter" && query.length > 0) {
-      navigate(`/search/${query}`);
-    }
-  }
+    <div className="herobanner-img">
+      <Img src={url.backdrop + data?.results?.[4].backdrop_path} />
+    </div>,
+  ];
+
 
   return (
     <div className="herobanner">
-      {!loading && (
-        <div className="herobanner-img">
-          <Img src={background} />
-        </div>
-      )}
+     
+          <Bannerbox
+          Imgbox={Imgbox}
+          loading={loading}
+          data={data?.results}
+        />
 
       <div className="opacity-layer"></div>
-
-      <Mainbox>
-        <div className="herobanner-content">
-          <span className="title">Welcome.</span>
-          <span className="subtitle">
-            Millions of movies, TV shows and people to discover. Explore now.
-          </span>
-
-          <div className="searchbox">
-            <input
-              type="text"
-              placeholder="Write your movie or TV show name here..."
-              onChange={(e) => setquery(e.target.value)}
-              onKeyUp={setqueryhandeler}
-            />
-            <button onClick={() => navigate(`/search/${query}`)}>Search</button>
-          </div>
-        </div>
-      </Mainbox>
+      <div className="opacity-layer-left"></div>
     </div>
   );
 };
