@@ -6,7 +6,7 @@ import dayjs from "dayjs";
 
 import Mainbox from "../../../Components/Mainbox/Mainbox";
 import Genres from "../../../Components/Genres/Genres";
-import RatingCircle from "../../../Components/RatingCircle/RatingCircle";
+import RatingCircle from "../../../Components/Ratingcircle/Ratingcircle";
 
 const Bannerbox = ({ Imgbox, loading, data }) => {
   const [show, setshow] = useState(0);

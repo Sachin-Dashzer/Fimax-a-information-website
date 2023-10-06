@@ -4,7 +4,7 @@ import "./videosection.scss";
 
 
 import Mainbox from "../../../Components/Mainbox/Mainbox";
-import Img from "../../../components/Lazyloading/Img";
+import Img from "../../../Components/Lazyloading/Img";
 import { PlayIcon } from "../Playbt";
 
 import Playvideo from "../../../Components/Playvideo/Playvideo";

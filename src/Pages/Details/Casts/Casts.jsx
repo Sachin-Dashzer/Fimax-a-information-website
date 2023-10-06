@@ -1,6 +1,6 @@
 import React from "react";
-import Mainbox from "../../../Components/Mainbox/Mainbox";
 import { useSelector } from "react-redux";
+import Mainbox from "../../../Components/Mainbox/Mainbox";
 import Img from "../../../Components/Lazyloading/Img";
 import Avatar from "../../../assets/avatar.png";
 
