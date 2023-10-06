@@ -1,11 +1,20 @@
 @import "../../../responsive.scss";
 .videosSection {
     position: relative;
-    margin-bottom: 50px;
+    
+    margin-bottom: 80px;
+    @include sm{
+        margin-bottom: 60px;
+    }
     .sectionHeading {
-        font-size: 27px;
+        font-size: 35px;
         color: white;
         margin-bottom: 30px;
+        font-weight: normal;  
+
+        @include sm{
+            font-size: 25px;
+        }
     }
     .videos {
         display: flex;

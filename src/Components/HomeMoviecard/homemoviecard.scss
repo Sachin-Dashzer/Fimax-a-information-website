@@ -2,28 +2,36 @@
 
 .home-movie-card {
   width: 100%;
-  margin-bottom: 50px;
+  margin-bottom: 80px;
+  @include sm{
+    margin-bottom: 60px;
+  }
   .mainbox {
     position: relative;
     // height: 400px;
     .carouselTitle {
-      font-size: 24px;
+      font-size: 35px;
       color: white;
-      margin-bottom: 20px;
       font-weight: normal;
-  }
+      margin-bottom: 30px;
+      @include sm{
+        font-size: 25px;
+        
+      }
 
+    }
+    
     .arrow {
-      font-size: 33px;
-      color: var(--black);
-      background: white;
+      font-size: 25px;
+      background-color: var(--black);
+      color: white;
       border-radius: 50%;
-      padding: 1px;
+      padding: 5px 7px;
       position: absolute;
       top: 35%;
       transform: translateY(-50%);
       cursor: pointer;
-      opacity: 0.5;
+      opacity: 0.6;
       z-index: 1;
       display: block;
 
@@ -152,7 +160,6 @@
             position: relative;
             @include md {
               display: none;
-
             }
           }
         }

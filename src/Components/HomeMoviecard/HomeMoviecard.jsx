@@ -12,7 +12,6 @@ import Mainbox from "../Mainbox/Mainbox";
 import "./homemoviecard.scss";
 
 const Movietypeboxes = ({ data, loading, pagetype, title }) => {
-  
   const navigate = useNavigate();
   const movingcontainer = useRef(null);
   const { url } = useSelector((state) => state.homepage);
@@ -46,16 +45,20 @@ const Movietypeboxes = ({ data, loading, pagetype, title }) => {
   return (
     <div className="home-movie-card">
       <Mainbox>
-        {title && <div className="carouselTitle">{title}</div>}
-        <i
-          className="fa-solid fa-arrow-left arrow arrow-left"
-          onClick={() => navigation("left")}
-        ></i>
+        {data?.length > 0 && (
+          <>
+            {title && <div className="carouselTitle">{title}</div>}
+            <i
+              className="fa-solid fa-arrow-left arrow arrow-left"
+              onClick={() => navigation("left")}
+            ></i>
 
-        <i
-          className="fa-solid fa-arrow-right arrow arrow-right"
-          onClick={() => navigation("right")}
-        ></i>
+            <i
+              className="fa-solid fa-arrow-right arrow arrow-right"
+              onClick={() => navigation("right")}
+            ></i>
+          </>
+        )}
 
         {!loading ? (
           <div className="movie-section" ref={movingcontainer}>

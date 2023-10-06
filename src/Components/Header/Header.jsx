@@ -1,7 +1,4 @@
 import React, { useState, useEffect } from "react";
-import { HiOutlineSearch } from "react-icons/hi";
-import { SlMenu } from "react-icons/sl";
-import { VscChromeClose } from "react-icons/vsc";
 import { useNavigate, useLocation } from "react-router-dom";
 import Logo from "../../assets/movix-logo.png";
 import Mainbox from "../Mainbox/Mainbox";
@@ -9,9 +6,8 @@ import Mainbox from "../Mainbox/Mainbox";
 import "./header.scss";
 
 const Header = () => {
-
-  const [showNavbar, setShowNavbar] = useState("top")
-  const [lastscrollY , setlastscrollY] = useState(0)
+  const [showNavbar, setShowNavbar] = useState("top");
+  const [lastscrollY, setlastscrollY] = useState(0);
 
   const [menubtn, setmenubtn] = useState(false);
   const [searchbtn, setsearchbtn] = useState(false);
@@ -23,37 +19,27 @@ const Header = () => {
     window.scrollTo(0, 0);
   }, [location]);
 
-
-  const setNavbar = ()=>{
-
-    if(window.scrollY > 200){
-
-      if(window.scrollY > lastscrollY && !menubtn){
+  const setNavbar = () => {
+    if (window.scrollY > 200) {
+      if (window.scrollY > lastscrollY && !menubtn) {
         setShowNavbar("hide");
-      }
-      else{
+      } else {
         setShowNavbar("show");
       }
-
-    }
-    else{
+    } else {
       setShowNavbar("top");
     }
 
     setlastscrollY(window.scrollY);
-  }
+  };
 
+  useEffect(() => {
+    window.addEventListener("scroll", setNavbar);
 
-  useEffect(()=>{
-
-    window.addEventListener("scroll" , setNavbar);
-
-    return() =>{
-      window.removeEventListener("scroll" , setNavbar)
-    }
-
-  }, [lastscrollY])
-
+    return () => {
+      window.removeEventListener("scroll", setNavbar);
+    };
+  }, [lastscrollY]);
 
   function setqueryhandeler(event) {
     if (event.key === "Enter" && query.length > 0) {
@@ -94,21 +80,25 @@ const Header = () => {
           <li className="menubars" onClick={() => setNavigation("tv")}>
             Tv show
           </li>
-          <HiOutlineSearch
+          <i
+            className="fa-solid fa-magnifying-glass"
             onClick={showsearchbtns}
             style={{ fontSize: "20px" }}
-          />
+          ></i>
         </ul>
 
         <ul className="mobile-menu">
           <li className="menubars">
-            <HiOutlineSearch onClick={showsearchbtns} />
+            <i
+              className="fa-solid fa-magnifying-glass"
+              onClick={showsearchbtns}
+            ></i>
           </li>
           <li className="menubars">
             {menubtn ? (
-              <VscChromeClose onClick={() => setmenubtn(false)} />
+              <i className="fa-solid fa-xmark" onClick={() => setmenubtn(false)}></i>
             ) : (
-              <SlMenu onClick={showbtns} />
+              <i className="fa-solid fa-bars" onClick={showbtns}></i>
             )}
           </li>
         </ul>
@@ -123,9 +113,10 @@ const Header = () => {
                 placeholder="Search a Movie or Tv show"
                 onChange={(e) => setquery(e.target.value)}
                 onKeyUp={setqueryhandeler}
+                autoFocus
               />
+              <i className="fa-solid fa-xmark" onClick={() => setsearchbtn(false)} style={{color : "black" , fontSize : "3em" , marginRight : "0%"}}></i>
 
-              <VscChromeClose onClick={() => setsearchbtn(false)} />
             </div>
           </Mainbox>
         </div>

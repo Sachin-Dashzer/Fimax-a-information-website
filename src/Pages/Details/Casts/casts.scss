@@ -5,14 +5,21 @@
 .casts{
 
     position: relative;
-    margin: 40px 0;
-    margin-bottom: 25px;
+    margin: 20px 0;
+
+    @include sm{
+        margin-bottom: 0;
+    }
 
     .title{
-        font-size: 27px;
-        color: snow;
+        font-size: 35px;
+        color: white;
         margin-bottom: 30px;
-        
+        font-weight: normal;   
+
+        @include sm{
+            font-size: 25px;
+        }
     }
 
     .castdata {

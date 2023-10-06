@@ -34,7 +34,7 @@ const Bannerbox = ({ Imgbox, loading, data }) => {
       gsap.fromTo(
         slides,
         { css: { opacity: 0, transform: "translateX(-10%)" } },
-        { css: { opacity: 0.9, transform: "translateX(0em)" }, duration: 1 }
+        { css: { opacity: 1, transform: "translateX(0em)" }, duration: 1 }
       );
     }, 6000);
 

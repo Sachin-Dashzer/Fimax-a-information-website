@@ -3,6 +3,11 @@
 .explorePage {
     min-height: 700px;
     padding-top: 100px;
+
+    @include sm{
+        padding-top: 50px;
+    }
+
     .resultNotFound {
         font-size: 24px;
         color: var(--black-light);
@@ -28,21 +33,22 @@
         display: flex;
         gap: 10px;
         flex-direction: row;
-        @include md {
+        @include sm {
+            margin-bottom: 20px;
             flex-direction: column;
         }
         .react-select-container {
             &.genresDD {
                 max-width: 500px;
                 min-width: 250px;
-                @include md {
+                @include sm {
                     width: 100%;
                 }
             }
             &.sortbyDD {
                 flex-shrink: 0;
                 width: 250px;
-                @include md {
+                @include sm {
                     width: 100%;
                 }
             }
@@ -52,6 +58,9 @@
                 box-shadow: none;
                 background-color: var(--black-light);
                 border-radius: 20px;
+                @include sm{
+                    border-radius: 8px;
+                }
                 .react-select__value-container {
                     .react-select__placeholder,
                     .react-select__input-container {
@@ -91,7 +100,8 @@
         display: flex;
         flex-flow: row wrap;
         margin-bottom: 50px;
-        gap: 20px;
+        justify-content: space-between;
+        // gap: auto;
         @include md {
             gap: 10px;
         }

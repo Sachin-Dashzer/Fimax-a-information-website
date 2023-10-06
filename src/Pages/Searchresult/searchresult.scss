@@ -8,7 +8,7 @@
         color: var(--black-light);
     }
     .title {
-        font-size: 24px;
+        font-size: 28px;
         line-height: 34px;
         color: white;
         margin-bottom: 25px;
@@ -16,7 +16,7 @@
     .content {
         display: flex;
         flex-flow: row wrap;
-        gap: 10px;
+        justify-content: space-between;
         margin-bottom: 50px;
         @include md {
             gap: 20px;

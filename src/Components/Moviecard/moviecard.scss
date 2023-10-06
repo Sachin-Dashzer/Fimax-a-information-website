@@ -1,20 +1,20 @@
 @import "../../responsive.scss";
 
 .moviecard {
-    width: calc(25% - 15px);
+    width: calc(24% - 15px);
         // width: calc(20% - 16px);
-    margin-bottom: 25px;
+    margin-bottom: 35px;
     cursor: pointer;
     flex-shrink: 0;
     @include md {
-        width: calc(50% - 5px);
+        width: calc(48% - 5px);
     }
     // @include lg {
     // }
     .movieposter {
         position: relative;
         width: 100%;
-        aspect-ratio: 1 / 1.5;
+        aspect-ratio: 1 / 1.3;
         background-size: cover;
         background-position: center;
         margin-bottom: 30px;
