@@ -13,7 +13,7 @@ import "./homemoviecard.scss";
 
 const Movietypeboxes = ({ data, loading, pagetype, title }) => {
   const navigate = useNavigate();
-  const movingcontainer = useRef(null);
+  const movingcontainer = useRef();
   const { url } = useSelector((state) => state.homepage);
 
   const navigation = (dir) => {
@@ -62,7 +62,7 @@ const Movietypeboxes = ({ data, loading, pagetype, title }) => {
 
         {!loading ? (
           <div className="movie-section" ref={movingcontainer}>
-            {data?.map((item, index) => {
+            {data?.map((item) => {
               const posterUrl = item.poster_path
                 ? url.poster + item.poster_path
                 : PosterFallback;
@@ -78,9 +78,6 @@ const Movietypeboxes = ({ data, loading, pagetype, title }) => {
                   <div className="moviebox-img">
                     <Img
                       src={posterUrl}
-                      alt={item.title || item.name}
-                      width={10}
-                      height={10}
                     />
 
                     <div className="rating">
