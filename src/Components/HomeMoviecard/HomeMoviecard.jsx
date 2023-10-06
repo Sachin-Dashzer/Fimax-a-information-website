@@ -1,8 +1,4 @@
 import React, { useRef } from "react";
-import {
-  BsFillArrowLeftCircleFill,
-  BsFillArrowRightCircleFill,
-} from "react-icons/bs";
 import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 import dayjs from "dayjs";
@@ -13,9 +9,10 @@ import Ratingcircle from "../Ratingcircle/Ratingcircle";
 import Genras from "../Genres/Genres";
 import Mainbox from "../Mainbox/Mainbox";
 
-import "./movietypeboxes.scss";
+import "./homemoviecard.scss";
 
-const Movietypeboxes = ({ data, loading, pagetype , title }) => {
+const Movietypeboxes = ({ data, loading, pagetype, title }) => {
+  
   const navigate = useNavigate();
   const movingcontainer = useRef(null);
   const { url } = useSelector((state) => state.homepage);
@@ -34,7 +31,6 @@ const Movietypeboxes = ({ data, loading, pagetype , title }) => {
     });
   };
 
-
   const skItem = () => {
     return (
       <div className="skeletonItem">
@@ -48,18 +44,18 @@ const Movietypeboxes = ({ data, loading, pagetype , title }) => {
   };
 
   return (
-    <div className="movietypebox">
+    <div className="home-movie-card">
       <Mainbox>
-      {title && <div className="carouselTitle">{title}</div>}
-
-        <BsFillArrowLeftCircleFill
-          className="arrow arrow-left"
+        {title && <div className="carouselTitle">{title}</div>}
+        <i
+          className="fa-solid fa-arrow-left arrow arrow-left"
           onClick={() => navigation("left")}
-        />
-        <BsFillArrowRightCircleFill
-          className="arrow arrow-right"
+        ></i>
+
+        <i
+          className="fa-solid fa-arrow-right arrow arrow-right"
           onClick={() => navigation("right")}
-        />
+        ></i>
 
         {!loading ? (
           <div className="movie-section" ref={movingcontainer}>

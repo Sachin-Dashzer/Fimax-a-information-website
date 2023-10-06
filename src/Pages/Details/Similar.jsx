@@ -1,6 +1,6 @@
 import React from "react";
 
-import Movietypeboxes from "../../Components/Movietypeboxes/Movietypeboxes";
+import HomeMoviecard from "../../Components/HomeMoviecard/HomeMoviecard";
 import usedFetch from "../../hook/usedFetch";
 
 const Similar = ({ pagetype, id }) => {
@@ -9,7 +9,7 @@ const Similar = ({ pagetype, id }) => {
     const title = pagetype === "tv" ? "Similar TV Shows" : "Similar Movies";
 
     return (
-        <Movietypeboxes
+        <HomeMoviecard
             title={title}
             data={data?.results}
             loading={loading}

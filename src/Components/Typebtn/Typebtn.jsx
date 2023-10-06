@@ -1,13 +1,14 @@
 import React, { useState } from "react";
-import "./switchbtn.scss";
+import "./typebtn.scss";
 
-const Switchbtn = ({ data  , onbtnchange }) => {
+const Typebtn = ({ data  , onbtnchange }) => {
   const [clicked, setclicked] = useState(0);
-  const [left , setleft] = useState(0) ;
+  const [name, setname] = useState('')
+
 
   const changebtns = (item , index) => {
 
-    setleft(index * 80);
+    setname('active');
 
     setTimeout(() => {
         setclicked(index);
@@ -17,8 +18,8 @@ const Switchbtn = ({ data  , onbtnchange }) => {
   };
 
   return (
-    <div className="switchbtn">
-      <div className="btnitems">
+    <div className="typebtn">
+      <div className="typebtn-items">
         {data.map((item, index) => {
           return (
             <span
@@ -30,10 +31,10 @@ const Switchbtn = ({ data  , onbtnchange }) => {
             </span>
           );
         })}
-        <span className="selected" style={{left}}></span>
+        <span className=" selected {name}" ></span>
       </div>
     </div>
   );
 };
 
-export default Switchbtn;
+export default Typebtn;

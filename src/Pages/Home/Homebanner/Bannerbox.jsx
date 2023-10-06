@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from "react";
-import Mainbox from "../../../Components/Mainbox/Mainbox";
-import "./herobanner.scss";
-import dayjs from "dayjs";
 import { useNavigate } from "react-router-dom";
-import Genres from "../../../Components/Genres/Genres";
-import RatingCircle from "../../../Components/RatingCircle/RatingCircle";
 import { gsap } from "gsap";
 
+import dayjs from "dayjs";
+
+import Mainbox from "../../../Components/Mainbox/Mainbox";
+import Genres from "../../../Components/Genres/Genres";
+import RatingCircle from "../../../Components/RatingCircle/RatingCircle";
 
 const Bannerbox = ({ Imgbox, loading, data }) => {
   const [show, setshow] = useState(0);
@@ -19,17 +19,25 @@ const Bannerbox = ({ Imgbox, loading, data }) => {
   };
 
   useEffect(() => {
+    let slides = document.querySelector(".homebanner-content");
+    let container = document.querySelector(".homebanner");
 
-    let slides = document.querySelector(".herobanner-content");
-    
+    gsap.fromTo(
+      container,
+      { css: { opacity: 0 } },
+      { css: { opacity: 1 }, duration: 1, delay: 1 }
+    );
+
     const interval = setInterval(() => {
-      
       setshow((prevIndex) => (prevIndex + 1) % Imgbox.length);
-      
-      gsap.fromTo(slides, {css : {opacity : 0 , transform : 'translateX(-10%)'}} , {css : {opacity : 0.7 , transform : "translateX(0em)" } ,duration : 1})
 
+      gsap.fromTo(
+        slides,
+        { css: { opacity: 0, transform: "translateX(-10%)" } },
+        { css: { opacity: 0.9, transform: "translateX(0em)" }, duration: 1 }
+      );
     }, 6000);
-    
+
     return () => clearInterval(interval);
   }, [setshow]);
 
@@ -38,7 +46,8 @@ const Bannerbox = ({ Imgbox, loading, data }) => {
       {!loading && <div>{Imgbox[show]}</div>}
 
       <Mainbox>
-        <div className="herobanner-content">
+        <div className="homebanner-content">
+
           <span className="heading"> # {show + 1} Spotlight </span>
 
           <span className="title">
@@ -61,12 +70,14 @@ const Bannerbox = ({ Imgbox, loading, data }) => {
           </div>
 
           <span className="discription">{data?.[show].overview}</span>
+
           <div className="button-box">
             <RatingCircle rating={data?.[show].vote_average.toFixed(1)} />
             <button onClick={() => navigate(`/movie/${data?.[show].id}`)}>
               More Details
             </button>
           </div>
+          
         </div>
       </Mainbox>
     </>

@@ -13,14 +13,40 @@
     }
 
     & > .mainbox {
+        width: 96%;
         display: flex;
-        align-items: center;
+        align-items: first baseline;
         justify-content: space-between;
-        margin-bottom: 20px;
+        margin-bottom: 30px;
+
+        @include sm{
+            margin-bottom: 20px;
+        }
     }
     h1 {
         font-size: 26px;
         color: white;
         font-weight: normal;
+        position: relative;
+
+        @include sm{
+            font-size: 20px;
+        }
+
+        
+    }
+    h1::after{
+
+        content: '';
+        width: 120%;
+        height: 1px;
+        background-color: white;
+        position: absolute;
+        left: 0;
+        bottom: -10px;
+
+        @include sm{
+            width: 90%;
+        }
     }
 }

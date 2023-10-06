@@ -3,9 +3,11 @@
 import React, { useState } from 'react'
 
 import Mainbox from '../../../Components/Mainbox/Mainbox'
-import Switchbtn from '../../../Components/Switchbtn/Switchbtn'
-import Movietypeboxes from '../../../Components/Movietypeboxes/Movietypeboxes'
+import Typebtn from '../../../Components/Typebtn/Typebtn'
 import usedFetch from '../../../hook/usedFetch'
+import HomeMoviecard from '../../../Components/HomeMoviecard/HomeMoviecard'
+
+
 
 
 const Toprated = () => {
@@ -27,12 +29,12 @@ const Toprated = () => {
         <Mainbox>
                 
                 <h1>Top-rated Movies/TV Series</h1>
-                <Switchbtn data={["Movie" , "Tv"]} onbtnchange ={onbtnchange} />
+                <Typebtn data={["Movie" , "Tv"]} onbtnchange ={onbtnchange} />
                 
 
 
         </Mainbox>
-            <Movietypeboxes data={data?.results} loading={loading}
+            <HomeMoviecard data={data?.results} loading={loading}
 
                 pagetype={pagetype}
             

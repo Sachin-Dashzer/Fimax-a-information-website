@@ -1,40 +1,44 @@
 import React, { useEffect, useState } from "react";
-// import { useNavigate } from "react-router-dom";
-import usedFetch from "../../../hook/usedFetch";
 import { useSelector } from "react-redux";
+
+import "./homebanner.scss";
+
+
+import usedFetch from "../../../hook/usedFetch";
 import Img from "../../../Components/Lazyloading/Img";
 import Bannerbox from "./Bannerbox";
 
-const Herobanner = () => {
+const Homebanner = () => {
+  
   const { data, loading } = usedFetch("/movie/upcoming");
   const { url } = useSelector((state) => state.homepage);
   
 
   const Imgbox = [
-    <div className="herobanner-img">
+    <div className="homebanner-img">
       <Img src={url.backdrop + data?.results?.[0].backdrop_path} />
     </div>,
 
-    <div className="herobanner-img">
+    <div className="homebanner-img">
       <Img src={url.backdrop + data?.results?.[1].backdrop_path} />
     </div>,
 
-    <div className="herobanner-img">
+    <div className="homebanner-img">
       <Img src={url.backdrop + data?.results?.[2].backdrop_path} />
     </div>,
 
-    <div className="herobanner-img">
+    <div className="homebanner-img">
       <Img src={url.backdrop + data?.results?.[3].backdrop_path} />
     </div>,
 
-    <div className="herobanner-img">
+    <div className="homebanner-img">
       <Img src={url.backdrop + data?.results?.[4].backdrop_path} />
     </div>,
   ];
 
 
   return (
-    <div className="herobanner">
+    <div className="homebanner">
      
           <Bannerbox
           Imgbox={Imgbox}
@@ -48,4 +52,4 @@ const Herobanner = () => {
   );
 };
 
-export default Herobanner;
+export default Homebanner;

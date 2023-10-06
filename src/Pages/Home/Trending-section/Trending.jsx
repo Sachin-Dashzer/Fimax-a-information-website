@@ -3,8 +3,8 @@
 import React, { useState } from 'react'
 
 import Mainbox from '../../../Components/Mainbox/Mainbox'
-import Switchbtn from '../../../Components/Switchbtn/Switchbtn'
-import Movietypeboxes from '../../../Components/Movietypeboxes/Movietypeboxes'
+import Typebtn from '../../../Components/Typebtn/Typebtn'
+import HomeMoviecard from '../../../Components/HomeMoviecard/HomeMoviecard'
 import usedFetch from '../../../hook/usedFetch'
 
 
@@ -27,12 +27,12 @@ const Trending = () => {
         <Mainbox>
                 
                 <h1>Top-Trending</h1>
-                <Switchbtn data={["Day" , "Week"]} onbtnchange ={onbtnchange} />
+                <Typebtn data={["Day" , "Week"]} onbtnchange ={onbtnchange} />
                 
 
 
         </Mainbox>
-            <Movietypeboxes data={data?.results} loading={loading} />
+            <HomeMoviecard data={data?.results} loading={loading} />
 
 
 

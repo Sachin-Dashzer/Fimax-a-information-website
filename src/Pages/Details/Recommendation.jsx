@@ -1,6 +1,6 @@
 import React from "react";
 
-import Movietypeboxes from "../../Components/Movietypeboxes/Movietypeboxes";
+import HomeMoviecard from "../../Components/HomeMoviecard/HomeMoviecard";
 import usedFetch from "../../hook/usedFetch";
 
 const Recommendation = ({ pagetype, id }) => {
@@ -9,7 +9,7 @@ const Recommendation = ({ pagetype, id }) => {
     );
 
     return (
-        <Movietypeboxes
+        <HomeMoviecard
             title="Recommendations"
             data={data?.results}
             loading={loading}

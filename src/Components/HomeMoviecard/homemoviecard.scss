@@ -1,6 +1,6 @@
 @import "../../responsive.scss";
 
-.movietypebox {
+.home-movie-card {
   width: 100%;
   margin-bottom: 50px;
   .mainbox {
@@ -56,7 +56,7 @@
         padding: 0 20px;
       }
       .skeletonItem {
-        width: calc(25% - 15px);
+        width: calc(20% - 16px);
 
         @include md {
           width: 125px;
@@ -65,7 +65,7 @@
         .posterBlock {
           border-radius: 12px;
           width: 100%;
-          aspect-ratio: 1 / 1.5;
+          aspect-ratio: 1 / 1.2;
           margin-bottom: 30px;
         }
         .textBlock {
@@ -132,11 +132,10 @@
           }
 
           .rating {
-            width: 60px;
-            height: 60px;
+            width: 55px;
+            height: 55px;
             position: relative;
             top: 20px;
-            // background-color: white;
             border-radius: 50%;
             flex-shrink: 0;
 
