@@ -1,0 +1,114 @@
+@import "../../responsive.scss";
+
+.explorePage {
+    min-height: 700px;
+    padding-top: 100px;
+
+    @include sm{
+        padding-top: 50px;
+    }
+
+    .resultNotFound {
+        font-size: 24px;
+        color: var(--accent);
+    }
+    .pageHeader {
+        display: flex;
+        justify-content: space-between;
+        margin: 35px 0;
+        flex-direction: row;
+        @include md {
+            flex-direction: column;
+        }
+    }
+    .pageTitle {
+        font-size: 24px;
+        line-height: 34px;
+        color: var(--text);
+        @include md {
+            margin-bottom: 20px;
+        }
+    }
+    .filters {
+        display: flex;
+        gap: 10px;
+        flex-direction: row;
+        @include sm {
+            margin-bottom: 20px;
+            flex-direction: column;
+        }
+        .react-select-container {
+            &.genresDD {
+                max-width: 500px;
+                min-width: 250px;
+                @include sm {
+                    width: 100%;
+                }
+            }
+            &.sortbyDD {
+                flex-shrink: 0;
+                width: 250px;
+                @include sm {
+                    width: 100%;
+                }
+            }
+            .react-select__control {
+                border: 0;
+                outline: 0;
+                box-shadow: none;
+                background-color: var(--accent);
+                border-radius: 20px;
+                @include sm{
+                    border-radius: 8px;
+                }
+                .react-select__value-container {
+                    .react-select__placeholder,
+                    .react-select__input-container {
+                        color: var(--text);
+                        margin: 0 10px;
+                    }
+                }
+                .react-select__single-value {
+                    color: var(--text);
+                }
+                .react-select__multi-value {
+                    background-color: var(--primary);
+                    padding: 4px 7px;
+                    border-radius: 10px;
+                    .react-select__multi-value__label {
+                        color: var(--text);
+                    }
+                    .react-select__multi-value__remove {
+                        background-color: transparent;
+                        color: var(--text);
+                        cursor: pointer;
+                        &:hover {
+                            color: var(--accent);
+                        }
+                    }
+                }
+            }
+            .react-select__menu {
+                top: 40px;
+                margin: 0;
+                padding: 0;
+                color: var(--background);
+            }
+        }
+    }
+    .content {
+        display: flex;
+        flex-flow: row wrap;
+        margin-bottom: 50px;
+        justify-content: space-between;
+        // gap: auto;
+        @include md {
+            gap: 10px;
+        }
+        .movieCard {
+            .posterBlock {
+                margin-bottom: 30px;
+            }
+        }
+    }
+}

@@ -16,17 +16,6 @@
     }
 }
 
-@mixin xl {
-    @media only screen and (max-width: 1280px) {
-        @content;
-    }
-}
-
-@mixin xxl {
-    @media only screen and (max-width: 1536px) {
-        @content;
-    }
-}
 
 @mixin ellipsis($line: 2) {
     display: -webkit-box;

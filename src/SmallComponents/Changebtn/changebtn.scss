@@ -1,0 +1,71 @@
+@import "../../responsive.scss";
+
+.change-btn {
+  min-height: 40px;
+  background-color: var(--background);
+  border-radius: 10px;
+  padding: 5px 6px;
+  display: flex;
+  align-items: center;
+  box-shadow: 0 0 1px 1px var(--text) inset;
+
+  @include sm {
+    height: 20px;
+    padding: 0 8px;
+    box-shadow: 0 0 0.8px 0.8px var(--background) inset;
+
+  }
+
+  .change-btn-items {
+    display: flex;
+    align-items: center;
+    height: 36px;
+    width: 140px;
+
+    position: relative;
+
+    @include sm {
+      height: 20px;
+      width: 80px;
+    }
+
+    .btns {
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 50%;
+      color: var(--text);
+      font-size: 14px;
+      font-weight: bolder;
+      position: relative;
+      border-radius: 10px;
+      z-index: 1;
+      cursor: pointer;
+      transition: color 0.4s ease;
+      &.active {
+        color: var(--background);
+      }
+
+      @include sm {
+        height: 24px;
+        font-size: 10px;
+      }
+    }
+
+
+    .active {
+      height: 34px;
+      width: 50%;
+      color: var(--background);
+      background : linear-gradient(120deg,var(--primary),var(--text));
+      transition: background-image 0.8s ease;
+      @include sm {
+        height: 24px;
+        border-radius: 5px;
+        
+      }
+    }
+  }
+
+}

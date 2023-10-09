@@ -10,14 +10,12 @@
   -moz-osx-font-smoothing: grayscale;
   -webkit-text-size-adjust: 100%;
 
-  --black: #04152d;
-  --black2: #041226;
-  --black3: #020c1b;
-  --black-lighter: #1c4b91;
-  --black-light: #173d77;
-  --pink: #da2f68;
-  --orange: #f89e00;
-  --gradient: linear-gradient(98.37deg, #f89e00 0.99%, #da2f68 100%);
+
+  --background : #050100;
+  --text : #EBEBFA;
+  --primary : #151956;
+  --secondary : #0D0F35;
+  --accent : #3F46CF;
 }
 
 * {
@@ -27,8 +25,8 @@
 }
 
 body {
-  background-color: var(--black);
-  color : white;
+  background-color: var(--background);
+  color : var(--text);
 }
 
 ::-webkit-scrollbar {
@@ -38,7 +36,7 @@ body {
 .skeleton {
   position: relative;
   overflow: hidden;
-  background-color: #0a2955;
+  background-color: var(--primary);
   &::after {
       position: absolute;
       top: 0;
@@ -48,10 +46,10 @@ body {
       transform: translateX(-100%);
       background-image: linear-gradient(
           90deg,
-          rgba(#193763, 0) 0,
-          rgba(#193763, 0.2) 20%,
-          rgba(#193763, 0.5) 60%,
-          rgba(#193763, 0)
+          rgba(#1f4b8e, 0) 0,
+          rgba(#1f4b8e, 0.2) 20%,
+          rgba(#1f4b8e, 0.5) 60%,
+          rgba(#1f4b8e, 0)
       );
       animation: shimmer 2s infinite;
       content: "";

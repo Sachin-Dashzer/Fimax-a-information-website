@@ -1,26 +1,26 @@
 import { useEffect } from "react";
-import { fetchDataFromApi } from "./utils/api";
 import { useDispatch } from "react-redux";
-
-import { getApiConfiguration, getGenre } from "./store/homepageslice";
-
 import { Routes, Route, BrowserRouter as Router } from "react-router-dom";
 
+import { fetchDataFromApi } from "./ExtraBox/ApiCall/Api";
+import { getApiConfiguration, getGenre } from "./ExtraBox/store/homepageslice";
 
-import Header from "./Components/Header/Header";
-import Footer from "./Components/Footer/Footer";
-import Home from "./Pages/Home/Home";
-import Details from "./Pages/Details/Details";
-import Searchresult from "./Pages/Searchresult/Searchresult";
-import Explore from "./Pages/Explore/Explore";
-import Pagenotfound from "./Pages/Eror404/Pagenotfound";
+
+
+import Header from "./MainComponents/Header/Header";
+import Footer from "./MainComponents/Footer/Footer";
+import Home from "./MainComponents/Home/Home";
+import Details from "./MainComponents/Details/Details";
+import Searchresult from "./MainComponents/Searchresult/Searchresult";
+import Explore from "./MainComponents/Explore/Explore";
+import Pagenotfound from "./MainComponents/Eror404/Pagenotfound";
 
 
 function App() {
 
   const dispatch = useDispatch();
 
-  const apitest = () => {
+  const Apidata = () => {
     fetchDataFromApi("/configuration").then((res) => {
 
       const url = {
@@ -32,7 +32,7 @@ function App() {
     });
   };
 
-  const genrecalls = async () => {
+  const Getgenredata = async () => {
     let promises = [];
     let endpoint = ["tv", "movie"];
     let allgenre = {};
@@ -52,8 +52,8 @@ function App() {
 
 
   useEffect(() => {
-    apitest();
-    genrecalls();
+    Apidata();
+    Getgenredata();
   }, []);
 
 

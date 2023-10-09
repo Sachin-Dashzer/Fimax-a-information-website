@@ -1,0 +1,197 @@
+@import "../../../responsive.scss";
+
+.home-header {
+  width: 100%;
+  height: 650px;
+  font-size: 10px;
+  position: relative;
+  background-color: var(--blackground );
+  display: flex;
+  align-items: flex-end;
+  overflow: hidden;
+
+  .home-header-img {
+    width: 70%;
+    height: 100%;
+    position: absolute;
+    left: 30%;
+    top: 0;
+
+    opacity: 0.4;
+    overflow: hidden;
+    .lazy-load-image-background {
+      width: 100%;
+      height: 100%;
+      Img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        object-position: center;
+      }
+    }
+
+    @include lg {
+      width: 100%;
+      left: 0;
+    }
+  }
+
+  .opacity-layer-left {
+    width: 100%;
+    height: 25em;
+    position: absolute;
+    transform: rotate(90deg);
+    bottom: 0;
+    left: -13%;
+    background: linear-gradient(180deg, rgba(20, 20, 34, 0) 0%, #06060a 69.17%);
+
+    @include lg {
+      display: none;
+    }
+  }
+  .opacity-layer {
+    width: 100%;
+    height: 25em;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    background: linear-gradient(180deg, rgba(20, 20, 34, 0) 0%, #06060a 69.17%);
+  }
+
+  .home-header-content {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    color: var(--text);
+    position: relative;
+    max-width: 70em;
+    margin-bottom: 6%;
+    margin-left: 6em;
+    z-index: 1;
+
+    .heading {
+      font-size: 2em;
+      font-weight: lighter;
+      color: orange;
+      margin-bottom: 0.5em;
+    }
+    .title {
+      font-size: 6em;
+      margin: 0.3em 0;
+      margin-left: -0.1em;
+      font-weight: bolder;
+    }
+    .genre {
+      font-size: 1.4em;
+      padding: 0.35em 0.5em;
+      margin-right: 0.5em;
+    }
+    .basics {
+      display: flex;
+      font-size: 1.35em;
+      margin: 1.5em 0;
+      margin-bottom: 1em;
+
+      span {
+        margin-right: 2em;
+        i {
+          font-size: 1.3em;
+          margin-right: 0.1em;
+        }
+      }
+    }
+
+    .discription {
+      font-size: 1.7em;
+      line-height: 1.3;
+    }
+
+    .button-box {
+      display: flex;
+      align-items: first baseline;
+      gap: 2em;
+
+      .circleRating {
+        width: 7em;
+        height: 7em;
+        margin-top: 2em;
+      }
+
+      button {
+        padding: 1em 1.4em;
+        font-size: 1.5em;
+        font-weight: bolder;
+        color: var(--text);
+        // background: var(--primary);
+        background: linear-gradient(120deg,var(--primary),var(--accent));
+        // -webkit-background-clip: text;
+      
+  
+        border: none;
+        outline: none;
+        cursor: pointer;
+        border-radius: 1em;
+        transition: all 0.4s ease;
+
+      }
+      button:hover{
+
+        background: var(--text);
+        color: var(--secondary);
+      }
+
+    }
+  }
+}
+
+@include lg {
+  .home-header {
+    font-size: 9px;
+
+    .mainbox {
+
+      .home-header-content {
+        max-width: 50em;
+
+        margin-left: 2em;
+        .button-box {
+          margin-top: 0;
+          margin-bottom: 4em;
+        }
+      }
+    }
+  }
+}
+
+@include sm {
+  .home-header {
+    height: 400px;
+    font-size: 7px;
+
+    .mainbox {
+
+      .home-header-content {
+        margin-left: 0.8em;
+        .heading {
+          margin-bottom: 0;
+        }
+
+        .title {
+          font-size: 4.7em;
+          font-weight: bold;
+          margin-bottom: 0;
+        }
+        .button-box {
+          margin-top: 0;
+          margin-bottom: 6em;
+        }
+
+        .discription,
+        .genre,
+        .basics {
+          display: none;
+        }
+      }
+    }
+  }
+}
