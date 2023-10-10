@@ -35,8 +35,8 @@
   .opacity-layer {
     width: 100%;
     height: 250px;
-    
-    background: linear-gradient(180deg, rgba(20, 20, 34, 0) 0%, #06060a 69.17%);
+
+    background: linear-gradient(180deg, rgba(20, 20, 34, 0) 0%, #050100 94.17%);
     position: absolute;
     bottom: 0;
     left: 0;
@@ -45,7 +45,7 @@
   .container {
     width: 100%;
     display: flex;
-    gap: 80px;
+    gap: 50px;
     flex-direction: row;
     position: relative;
     padding: 10px 60px;
@@ -53,11 +53,26 @@
     @include md {
       gap: 25px;
       flex-direction: column;
+      padding: 20px 50px;
+
+      // padding: 0;
+    }
+    @include sm{
       padding: 0;
     }
 
-    .left {
+    .right {
       flex-shrink: 0;
+
+      @include md{
+
+        text-align: center;
+        padding-top: 30px;
+      }
+      @include sm{
+        padding: 0;
+      }
+
       .lazy-load-image-background {
         width: 350px;
         display: block;
@@ -69,40 +84,46 @@
         img {
           width: 100%;
           height: 100%;
-          // object-fit: cover;
-          // object-position: center;
+          object-fit: cover;
+          object-position: center;
         }
 
-        @include md{
+        @include md {
           width: 400px;
         }
-        @include sm{
+        @include sm {
           width: 320px;
         }
-
       }
-
-      
     }
 
-    .right {
+    .left {
+      width: 50vw;
+
       color: var(--text);
       padding-top: 10px;
-      @include md{
+      @include md {
+        width: 100%;
         padding-top: 0;
       }
       .heading {
-        font-size: 34px;
-        line-height: 50px;
+        font-size: 44px;
+        font-weight: normal;
+        line-height: 60px;
+        margin-left: 5px;
+        font-family: 'Times New Roman', Times, serif;
+        text-decoration: underline;
+        margin-bottom: 15px;
         @include md {
           line-height: 40px;
-          font-size: 28px;
+          font-size: 30px;
         }
       }
       .subtitle {
         font-size: 20px;
         line-height: 28px;
         margin-bottom: 15px;
+        margin-left: 5px;
         font-style: italic;
         opacity: 0.5;
         @include md {
@@ -112,6 +133,16 @@
       }
       .genres {
         flex-flow: row wrap;
+        .genre {
+          transform: scale(1.35);
+          background-color: var(--accent);
+          margin-right: 20px;
+          margin-left: 10px;
+          @include md {
+            transform: scale(1.1);
+            margin-left: 5px;
+          }
+        }
       }
       .discription {
         margin-bottom: 25px;
@@ -127,6 +158,10 @@
             padding-right: 0;
           }
         }
+
+        @include md {
+          display: none;
+        }
       }
       .row {
         display: flex;
@@ -134,7 +169,7 @@
         gap: 25px;
         margin: 20px 0;
 
-        @include sm{
+        @include md {
           margin: 5px 0;
           gap: 15px;
         }
@@ -154,7 +189,7 @@
           align-items: center;
           gap: 20px;
           cursor: pointer;
-          @include sm{
+          @include sm {
             gap: 10px;
           }
 
@@ -197,13 +232,17 @@
             }
           }
         }
-  
       }
 
       .details {
         border-bottom: 1px solid rgba(255, 255, 255, 0.1);
         padding: 15px 0;
         display: flex;
+
+        @include md {
+          padding-top: 0;
+        }
+
         .infoItem {
           margin-right: 10px;
           display: flex;

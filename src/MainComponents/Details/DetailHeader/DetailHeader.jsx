@@ -50,14 +50,8 @@ const DetailHeader = ({ video, crew }) => {
 
               <Mainbox>
                 <div className="container">
+
                   <div className="left">
-                    {data.poster_path ? (
-                      <Img src={url.poster + data?.poster_path} />
-                    ) : (
-                      <Img src={PosterFallback} />
-                    )}
-                  </div>
-                  <div className="right">
                     <div className="heading">
                       {`${data.name || data.title} (${dayjs(
                         data?.release_date
@@ -149,6 +143,13 @@ const DetailHeader = ({ video, crew }) => {
                           ))}
                         </span>
                       </div>
+                    )}
+                  </div>
+                  <div className="right">
+                    {data.poster_path ? (
+                      <Img src={url.poster + data?.poster_path} />
+                    ) : (
+                      <Img src={PosterFallback} />
                     )}
                   </div>
                 </div>

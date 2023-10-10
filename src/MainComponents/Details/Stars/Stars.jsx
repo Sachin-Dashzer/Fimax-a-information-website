@@ -27,7 +27,7 @@ const Stars = ({ casts, castloading }) => {
 
         {!castloading ? (
           <div className="castdata">
-            {casts?.map((item) => {
+            {casts?.map((item , index) => {
               const Profilepic = item?.profile_path
                 ? url.profile + item.profile_path
                 : Avatar;
